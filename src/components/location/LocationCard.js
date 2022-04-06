@@ -1,9 +1,10 @@
 import React from "react"
 import "./Location.css"
 
-export const LocationCard = () => (
+export const LocationCard = ({locationObj, deleteLocationFunction}) => (
     <section className="location">
-        <h3 className="location__name">Nashville</h3>
-        <h3 className="location__address">123 Somewhere</h3>
+        <h3 className="location__name">{locationObj.name}</h3>
+        <h3 className="location__address">{locationObj.address}</h3>
+        <button type="button" onClick={() => deleteLocationFunction(locationObj.id)}>Close Location</button>
     </section>
 )
