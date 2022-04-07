@@ -16,3 +16,14 @@ export const deleteCustomer = customerId => {
     })
         .then(response => response.json())
 }
+
+export const addCustomer = (customerObj) => {
+    return fetch(`${remoteURL}/customers`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json" 
+        },
+        body: JSON.stringify(customerObj)
+    })
+        .then(response => response.json())
+}

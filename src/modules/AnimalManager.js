@@ -16,3 +16,14 @@ export const deleteAnimal = id => {
       method: "DELETE"
     }).then(result => result.json())
   }
+
+export const addAnimal = (animalObj) => {
+  return fetch(`${remoteURL}/animals`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(animalObj)
+  })
+    .then(response => response.json())
+}
