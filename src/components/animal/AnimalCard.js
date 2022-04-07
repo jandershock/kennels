@@ -12,7 +12,7 @@ export const AnimalCard = ({ animalObj, deleteAnimalFunction }) => {
             {animalObj.name}
           </span></h3>
           <p>Breed: {animalObj.breed}</p>
-          <Link to={`/animals/${animalObj.id}`}>
+          <Link to={`/animals/details/${animalObj.id}`}>
               <button>Details</button>
           </Link>
           <button type="button" onClick={() => deleteAnimalFunction(animalObj.id)}>Discharge</button>

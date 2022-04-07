@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { getAnimalById } from '../../modules/AnimalManager';
+import { deleteAnimal, getAnimalById } from '../../modules/AnimalManager';
 import './AnimalDetail.css';
 import { useParams, useNavigate } from "react-router-dom"
 
 export const AnimalDetail = () => {
   const [animal, setAnimal] = useState({ name: "", breed: "" });
+  const [isLoading, setIsLoading] = useState(true);
 
   const {animalId} = useParams();
+  console.log(animalId);
   const navigate = useNavigate();
+
+  const handleDelete = () => {
+    setIsLoading(true);
+    return deleteAnimal(animal.id)
+      .then(() => {
+        navigate("/animals");
+      })
+  }
 
   useEffect(() => {
     //getAnimalById(id) from AnimalManager and hang on to the data; put it into state
@@ -15,8 +25,10 @@ export const AnimalDetail = () => {
     getAnimalById(animalId)
       .then(animal => {
         setAnimal(animal);
+        setIsLoading(false);
       });
   }, [animalId]);
+
 
   return (
     <section className="animal">
@@ -25,6 +37,7 @@ export const AnimalDetail = () => {
       {/* What's up with the question mark???? See below.*/}
       <div className="animal__location">Location: {animal.location?.name}</div>
       <div className="animal__owner">Customer: {animal.customer?.name}</div>
+      <button type="button" disabled={isLoading} onClick={handleDelete}>Discharge</button>
     </section>
   );
 }
