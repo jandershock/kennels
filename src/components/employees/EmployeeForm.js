@@ -1,13 +1,16 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { addEmployee } from "../../modules/EmployeeManager";
+import { getAllLocations } from "../../modules/LocationManager";
 
 export const EmployeeForm = () => {
     const navigate = useNavigate();
     const [isLoading, setIsLoading] = useState(false);
+    const [locations, setLocations] = useState([]);
     const [employee, setEmployee] = useState({
         name: "",
-        address: ""
+        address: "",
+        locationId: 0
     })
 
     const handleControlledInputChange = (event) => {
@@ -19,11 +22,27 @@ export const EmployeeForm = () => {
 
     const handleClickSaveEmployee = () => {
         setIsLoading(true);
-        addEmployee(employee)
-            .then(() => {
-                navigate("/employees");
-            })
+        const locationId = employee.locationId
+
+        if (locationId === 0) {
+            window.alert("Please select a location")
+        } else {
+            addEmployee(employee)
+                .then(() => {
+                    navigate("/employees");
+                })
+        }
+        setIsLoading(false);
     }
+
+    useEffect(() => {
+        setIsLoading(true);
+        getAllLocations()
+            .then(response => {
+                setLocations(response);
+                setIsLoading(false);
+            })
+    }, [])
 
     return (
         <>
@@ -40,6 +59,15 @@ export const EmployeeForm = () => {
                         <label htmlFor="name">Employee address:</label>
                         <input type="text" id="address" onChange={handleControlledInputChange} required autoFocus className="form-control" placeholder="Employee address" value={employee.address} />
                     </div>
+                </fieldset>
+                <fieldset>
+                    <label htmlFor="locationId">Assign to Location:</label>
+                    <select onChange={handleControlledInputChange} required id="locationId">
+                        <option value={0}>Select a Location</option>
+                        {locations.map(location => (
+                            <option key={location.id} value={location.id}>{location.name}</option>
+                        ))}
+                    </select>
                 </fieldset>
                 <button type="button" disabled={isLoading} className="btn btn-primary"
                     onClick={handleClickSaveEmployee}>

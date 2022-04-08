@@ -26,12 +26,12 @@ export const CustomerForm = () => {
             <form>
                 <h2 className="customerForm__title">New Owner</h2>
                 <fieldset>
-                    <label htmlFor="customerForm__name">Name:</label>
+                    <label htmlFor="name">Name:</label>
                     <input onChange={handleUpdate} id="name" className="customerForm__name" required placeholder="Name"></input>
                 </fieldset>
                 <fieldset>
-                    <label htmlFor="customerForm__address">Address:</label>
-                    <input onChange={handleUpdate} id="address" className="customerForm__name" required placeholder="Address"></input>
+                    <label htmlFor="address">Address:</label>
+                    <input onChange={handleUpdate} id="address" className="customerForm__address" required placeholder="Address"></input>
                 </fieldset>
                 <button type="button" disabled={isLoading} onClick={createNewOwner}>Create New Owner</button>
             </form>
