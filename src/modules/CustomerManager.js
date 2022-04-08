@@ -27,3 +27,14 @@ export const addCustomer = (customerObj) => {
     })
         .then(response => response.json())
 }
+
+export const updateCustomer = (customerObj) => {
+    return fetch(`${remoteURL}/customers/${customerObj.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        }, 
+        body: JSON.stringify(customerObj)
+    })
+        .then(response => response.json())
+}
