@@ -28,3 +28,14 @@ export const addEmployee = (employeeObj) => {
   })
     .then(response => response.json())
 }
+
+export const updateEmployee = (employeeObj) => {
+  return fetch(`${remoteURL}/employees/${employeeObj.id}` , {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(employeeObj)
+  })
+    .then(response => response.json())
+}

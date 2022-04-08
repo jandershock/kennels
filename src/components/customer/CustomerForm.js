@@ -33,6 +33,10 @@ export const CustomerForm = () => {
                     <label htmlFor="address">Address:</label>
                     <input onChange={handleUpdate} id="address" className="customerForm__address" required placeholder="Address"></input>
                 </fieldset>
+                <fieldset>
+                    <label htmlFor="email">Email:</label>
+                    <input onChange={handleUpdate} id="email" className="customerForm__email" required placeholder="Email"></input>
+                </fieldset>
                 <button type="button" disabled={isLoading} onClick={createNewOwner}>Create New Owner</button>
             </form>
         </>
