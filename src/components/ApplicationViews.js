@@ -44,7 +44,7 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
                 <Route path="/animals/:animalId/edit" element={<PrivateRoute><AnimalEditForm /></PrivateRoute>} />
 
                 {/* Locations Route */}
-                <Route path="/locations" element={<PrivateRoute><LocationList /></PrivateRoute>} />
+                <Route path="/locations" element={<LocationList />} />
                 <Route path="/locations/details/:locationId" element={<PrivateRoute><LocationDetail /></PrivateRoute>} />
                 <Route path="/locations/create" element={<PrivateRoute><LocationForm /></PrivateRoute>} />
                 <Route path="/locations/:locationId/edit" element={<PrivateRoute><LocationEditForm /></PrivateRoute>} />
