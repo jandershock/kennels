@@ -8,8 +8,8 @@ export const AnimalSpotlight = ({animalId}) => {
   useEffect(() => {
     getAnimalById(animalId).then(animal => {
       setAnimal(animal);
-    });
-  }, [animal]);
+    })
+  }, [animalId]);
 
   return (
     <div className="animal-spotlight">
