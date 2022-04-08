@@ -9,6 +9,9 @@ export const LocationCard = ({ locationObj, deleteLocationFunction }) => (
         <Link to={`/locations/details/${locationObj.id}`}>
             <button type="button">Details</button>
         </Link>
+        <Link to={`/locations/${locationObj.id}/edit`}>
+            <button type="button">Edit</button>
+        </Link>
         <button type="button" onClick={() => deleteLocationFunction(locationObj.id)}>Close Location</button>
     </section>
 )

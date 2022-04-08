@@ -27,3 +27,14 @@ export const addLocation = (locationObj) => {
     })
         .then(response => response.json())
 }
+
+export const updateLocation = (locationObj) => {
+    return fetch(`${remoteURL}/locations/${locationObj.id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(locationObj)
+    })
+        .then(response => response.json())
+}
