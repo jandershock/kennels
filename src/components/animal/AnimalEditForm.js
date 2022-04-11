@@ -7,7 +7,14 @@ import "./AnimalForm.css"
 
 
 export const AnimalEditForm = () => {
-    const [animal, setAnimal] = useState({ name: "", breed: "" });
+    const [animal, setAnimal] = useState({ 
+        name: "", 
+        breed: "", 
+        id: "", 
+        locationId: "", 
+        customerId: "",
+        dateAdmitted: ""
+    });
     const [isLoading, setIsLoading] = useState(false);
     const [customers, setCustomers] = useState([]);
     const [locations, setLocations] = useState([]);
@@ -31,8 +38,9 @@ export const AnimalEditForm = () => {
             id: animalId,
             name: animal.name,
             breed: animal.breed,
-            locationId: 1,
-            customerId: 1
+            locationId: animal.locationId,
+            customerId: animal.customerId,
+            dateAdmitted: animal.dateAdmitted
         };
 
         //pass the editedAnimal object to the database
@@ -93,7 +101,7 @@ export const AnimalEditForm = () => {
                         {/* Customers */}
                         <select required className="form-control" onChange={handleFieldChange} id="customerId" value={animal.customerId}>
                             {customers.map(customer => (
-                                <option value={customer.id}>{customer.name}</option>
+                                <option key={customer.id} value={customer.id}>{customer.name}</option>
                             ))}
                         </select>
                         <label htmlFor="customerId">Owner</label>
@@ -101,10 +109,20 @@ export const AnimalEditForm = () => {
                         {/* Locations */}
                         <select required className="form-control" onChange={handleFieldChange} id="locationId" value={animal.locationId}>
                             {locations.map(location => (
-                                <option value={location.id}>{location.name}</option>
+                                <option key={location.id} value={location.id}>{location.name}</option>
                             ))}
                         </select>
                         <label htmlFor="locationId">Location</label>
+
+                        {/* Date */}
+                        <input type="date"
+                        id="dateAdmitted"
+                        className="form-control"
+                        onChange={handleFieldChange}
+                        value={animal.hasOwnProperty('dateAdmitted') ? animal.dateAdmitted : ""}
+                        readOnly={true}></input>
+                        <label htmlFor="dateAdmitted">Date Admitted</label>
+                        
                     </div>
                     {/* Be sure to include location and customer */}
                     <div className="alignRight">

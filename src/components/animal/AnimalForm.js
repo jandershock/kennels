@@ -9,11 +9,15 @@ export const AnimalForm = () => {
 	// State will contain both animal data as well as an isLoading flag.
 	// Define the initial state of the form inputs with useState()
 
+	const dateObj = new Date();
+
 	const [animal, setAnimal] = useState({
 		name: "",
 		breed: "",
 		locationId: 0,
-		customerId: 0
+		customerId: 0,
+		dateAdmitted: dateObj.toISOString().split('T')[0],
+		isDischarged: false
 	});
 
 	const [isLoading, setIsLoading] = useState(false);
@@ -122,6 +126,12 @@ export const AnimalForm = () => {
 							</option>
 						))}
 					</select>
+				</div>
+			</fieldset>
+			<fieldset>
+				<div className="form-group">
+					<label htmlFor="dateAdmitted">Date Admitted: </label>
+					<input type="date" id="dateAdmitted" className="form-control" value={animal.dateAdmitted} onChange={handleControlledInputChange}></input>
 				</div>
 			</fieldset>
 			<button type="button" disabled={isLoading} className="btn btn-primary"

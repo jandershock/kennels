@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AnimalSpotlight } from "../components/animal/AnimalSpotlight"
 import { getRandomId } from "../modules/AnimalManager"
+import { MadLib } from "./MadLib/MadLib";
 import { PropsAndState } from "./propsAndState/PropsAndState";
 
 export const Home = () => {
@@ -26,6 +27,8 @@ export const Home = () => {
       {
         spotlightId && <AnimalSpotlight animalId={spotlightId} />
       }
+      <br></br>
+      <MadLib />
     </>
   );
 };

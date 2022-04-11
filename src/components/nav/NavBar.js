@@ -16,17 +16,20 @@ export const NavBar = ({ clearUser, isAuthenticated }) => {
                 <Link className="navbar__link" to="/"> Home </Link>
             </li>
             {isAuthenticated && <li className="navbar__item">
-                    <Link className="navbar__link" to="/animals"> Animals </Link>
-                </li>}
+                <Link className="navbar__link" to="/animals"> Animals </Link>
+            </li>}
+            {isAuthenticated && <li className="navbar__item">
+                <Link className="navbar__link" to="/animals/discharged"> Discharged </Link>
+            </li>}
             <li className="navbar__item">
                 <Link className="navbar__link" to="/locations"> Locations </Link>
             </li>
             {isAuthenticated && <li className="navbar__item">
-                    <Link className="navbar__link" to="/employees"> Employees </Link>
-                </li>}
+                <Link className="navbar__link" to="/employees"> Employees </Link>
+            </li>}
             {isAuthenticated && <li className="navbar__item">
-                    <Link className="navbar__link" to="/customers"> Owners </Link>
-                </li>} 
+                <Link className="navbar__link" to="/customers"> Owners </Link>
+            </li>}
             {isAuthenticated
                 ? <li className="navbar__item">
                     <span className="navbar__link" onClick={handleLogout}> Logout </span>

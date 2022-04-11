@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { deleteAnimal, getAnimalById } from '../../modules/AnimalManager';
+import { updateAnimal, getAnimalById } from '../../modules/AnimalManager';
 import './AnimalDetail.css';
 import { useParams, useNavigate } from "react-router-dom"
 
@@ -11,9 +11,9 @@ export const AnimalDetail = () => {
   console.log(animalId);
   const navigate = useNavigate();
 
-  const handleDelete = () => {
+  const handleUpdate = () => {
     setIsLoading(true);
-    return deleteAnimal(animal.id)
+    return updateAnimal(animal.id)
       .then(() => {
         navigate("/animals");
       })
@@ -33,11 +33,15 @@ export const AnimalDetail = () => {
   return (
     <section className="animal">
       <h3 className="animal__name">{animal.name}</h3>
-      <div className="animal__breed">{animal.breed}</div>
+      <div className="animal__breed">Breed: {animal.breed}</div>
       {/* What's up with the question mark???? See below.*/}
       <div className="animal__location">Location: {animal.location?.name}</div>
       <div className="animal__owner">Customer: {animal.customer?.name}</div>
-      <button type="button" disabled={isLoading} onClick={handleDelete}>Discharge</button>
+      {!animal.isDischarged && <button type="button" disabled={isLoading} onClick={handleUpdate}>Discharge</button>}
+      {animal.isDischarged && <>
+      <div className="animal__admittedDate">Admitted date: {animal.admittedDate}</div>
+      <div className="animal__dischargeDate">Discharge date: {animal.dischargeDate}</div>
+      </>}
     </section>
   );
 }

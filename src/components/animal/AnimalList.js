@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAllAnimals, getAnimalById, deleteAnimal } from '../../modules/AnimalManager';
+import { getAllAnimals, getAnimalById, updateAnimal } from '../../modules/AnimalManager';
 import { AnimalCard } from './AnimalCard';
 
 export const AnimalList = () => {
@@ -9,15 +9,22 @@ export const AnimalList = () => {
     const navigate = useNavigate();
 
     const getAnimals = () => {
-        return getAllAnimals().then(animalsFromAPI => {
-            // We'll do something more interesting with this data soon.
-            console.log(animalsFromAPI);
-            setAnimals(animalsFromAPI)
-        });
+        return getAllAnimals()
+            .then(animalsFromAPI => {
+                console.log(animalsFromAPI);
+                let tmp = animalsFromAPI.filter(element => { return !element.isDischarged })
+                return tmp
+            })
+            .then(nonDischargedAnimals => {
+                setAnimals(nonDischargedAnimals);
+            });
     };
 
-    const deleteAnimalFunction = (animalId) => {
-        return deleteAnimal(animalId)
+    const updateAnimalFunction = (animalObj) => {
+        const dateObj = new Date();
+        animalObj.isDischarged = true;
+        animalObj.dischargeDate = dateObj.toISOString().split('T')[0];
+        return updateAnimal(animalObj)
             .then(() => {
                 getAnimals();
             })
@@ -40,7 +47,7 @@ export const AnimalList = () => {
                 {animals.map(animal => <AnimalCard
                     key={animal.id}
                     animalObj={animal}
-                    deleteAnimalFunction={deleteAnimalFunction}
+                    updateAnimalFunction={updateAnimalFunction}
                 />)}
             </div>
         </>

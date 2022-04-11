@@ -4,6 +4,7 @@ import { Home } from "./Home"
 import { AnimalList } from "./animal/AnimalList"
 import { AnimalDetail } from "./animal/AnimalDetail"
 import { AnimalForm } from "./animal/AnimalForm"
+import { AnimalDischargedList } from "./animal/AnimalDischargedList"
 import { EmployeeList } from "./employees/EmployeeList"
 import { EmployeeForm } from "./employees/EmployeeForm"
 import { LocationList } from "./location/LocationList"
@@ -42,6 +43,7 @@ export const ApplicationViews = ({ isAuthenticated, setIsAuthenticated }) => {
                 <Route path="/animals/details/:animalId" element={<PrivateRoute><AnimalDetail /></PrivateRoute>} />
                 <Route path="/animals/create" element={<PrivateRoute><AnimalForm /></PrivateRoute>} />
                 <Route path="/animals/:animalId/edit" element={<PrivateRoute><AnimalEditForm /></PrivateRoute>} />
+                <Route path="/animals/discharged" element={<PrivateRoute><AnimalDischargedList /></PrivateRoute>} />
 
                 {/* Locations Route */}
                 <Route path="/locations" element={<LocationList />} />
