@@ -1,7 +1,19 @@
 import "./Animal.css"
 import { Link } from "react-router-dom"
+import { Portal } from "./modals/Portal"
+import { AnimalAdmitDateModal } from "./modals/AnimalAdmitDateModal"
+import { useState } from "react"
 
 export const AnimalCard = ({ animalObj, updateAnimalFunction }) => {
+  const [showEditAdmitDateModal, setShowEditAdmitDateModal] = useState(false);
+  const [showEditDischargeDateModal, setShowEditDischargeDateModal] = useState(false);
+
+
+  const renderEditDischargeDateModal = () => {
+
+  }
+
+
   return (
     <div className="card">
       <div className="card-content">
@@ -15,7 +27,10 @@ export const AnimalCard = ({ animalObj, updateAnimalFunction }) => {
         {animalObj.isDischarged && <>
           <div className="admitInfo">
             <p>Admitted date: {animalObj.dateAdmitted}</p>
-            <button>Edit Admit Date</button>
+            <button onClick={() => { setShowEditAdmitDateModal(true)}}>Edit Admit Date</button>
+            {showEditAdmitDateModal && <Portal><AnimalAdmitDateModal handleClose={() => {
+              setShowEditAdmitDateModal(false)
+            }} /></Portal>}
           </div>
           <div className="dischargeInfo">
             <p>Discharge date: {animalObj.dischargeDate}</p>

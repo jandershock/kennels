@@ -9,21 +9,21 @@ export const AnimalForm = () => {
 	// State will contain both animal data as well as an isLoading flag.
 	// Define the initial state of the form inputs with useState()
 
-	const dateObj = new Date();
+	//const dateObj = new Date();
 
 	const [animal, setAnimal] = useState({
 		name: "",
 		breed: "",
 		locationId: 0,
 		customerId: 0,
-		dateAdmitted: dateObj.toISOString().split('T')[0],
+		dateAdmitted: new Date().toISOString().split('T')[0],
 		isDischarged: false
 	});
 
 	const [isLoading, setIsLoading] = useState(false);
 
 	// you will need the the `getAll` in the LocationsManager and CustomersManager to complete this section
-	const [locations, setLocations] = useState([]);
+	const [locations, setLocations] = useState(getAllLocations);
 	const [customers, setCustomers] = useState([]);
 
 	const navigate = useNavigate();
