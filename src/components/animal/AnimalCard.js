@@ -28,7 +28,7 @@ export const AnimalCard = ({ animalObj, updateAnimalFunction }) => {
           <div className="admitInfo">
             <p>Admitted date: {animalObj.dateAdmitted}</p>
             <button onClick={() => { setShowEditAdmitDateModal(true)}}>Edit Admit Date</button>
-            {showEditAdmitDateModal && <Portal><AnimalAdmitDateModal handleClose={() => {
+            {showEditAdmitDateModal && <Portal><AnimalAdmitDateModal animal={animalObj} handleClose={() => {
               setShowEditAdmitDateModal(false)
             }} /></Portal>}
           </div>
